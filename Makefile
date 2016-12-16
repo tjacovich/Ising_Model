@@ -59,12 +59,12 @@ INCLUDE=-I ./include
 # WITH continuation (\) ON LAST LINE.
 
 OBJECTS= \
-delta_action.o\
+Ising_action.o\
 mt19937-64.o\
 printlattice.o\
 printtwopoint.o\
 # EXE: name of the executable file produced by compilation
-EXE=lattice_main
+EXE=Ising_main
 
 #
 # Lines from here on are the actual rules that make uses to build $(COMMAND).
@@ -76,11 +76,11 @@ EXE=lattice_main
 # lines with \ .
 
 
-all: lattice_main.c deltaction mtgenerator printlattice printtwopoint
+all: Ising_main.c deltaction mtgenerator printlattice printtwopoint
 	$(COMPILER) $(CFLAGS) $(EXTRFLAGS) $(INCLUDE) $(OBJECTS) $(EXE).c -lm -o $(EXE)
 
-deltaction: delta_action.c 
-	$(COMPILER) $(CFLAGS) $(INCLUDE) delta_action.c -c
+deltaction: Ising_action.c 
+	$(COMPILER) $(CFLAGS) $(INCLUDE) Ising_action.c -c
 
 mtgenerator: mt19937-64.c 
 	$(COMPILER) $(CFLAGS) $(INCLUDE) mt19937-64.c -c
