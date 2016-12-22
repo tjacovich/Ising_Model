@@ -7,7 +7,14 @@
 #include "printlattice.h"//function to print the contents of the arrays
 #include "printtwopoint.h"//Prints out an average of the correlator for a given field congfiguration
 #include <complex.h>//Complex Numbers Library
+<<<<<<< Updated upstream
 #include "action.h"//Prints the energy of the entire field
+=======
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 int main(int argc, char *argv[])
   { 
     /*checks to make sure the proper arguments are specified*/
@@ -49,7 +56,11 @@ int main(int argc, char *argv[])
     /*This loop initiates a perturbation of a single field point on the lattice,
     and then implements a Metropolis style accept reject of the change in the field*/ 
     double temp;/*temporary field point*/
+<<<<<<< Updated upstream
     double kb =1;/*Boltzmann Constant*/
+=======
+    double kb = 1.38065e-23;/*Boltzmann Constant*/
+>>>>>>> Stashed changes
     double bt = 1/(kb*T);/*Beta factor*/
     for(int i=0; i<No; i++)
       {
@@ -59,6 +70,7 @@ int main(int argc, char *argv[])
          /*counts the number of iterations that occur*/ 
          tot++;
              
+<<<<<<< Updated upstream
          /*Perturbs  the field with a pseudorandom real number between -1 and 1*/
 	 double q = (2-2*genrand64_real1());
      	 int k = 1-2* (int) q;
@@ -80,6 +92,37 @@ int main(int argc, char *argv[])
            { 
        	     S[j]=S_o;//Writes Energy to S array
            }
+=======
+<<<<<<< Updated upstream
+             /*Perturbs  the field with a pseudorandom real number between -1 and 1*/ 
+             double q = (2-2*genrand64_real1());
+	     int k = 1-2* (int) q;
+	     temp = k;
+=======
+             /*Perturbs  the field with a pseudorandom real number between -1 and 1*/
+             temp = phi[j] + step*( 2*drand48() - 1 );
+>>>>>>> Stashed changes
+            
+             /*Generates the action due to the new field point*/  
+             double S_n, S_o;
+             Isingaction(phi, temp, J, &S_n, &S_o, dim_lat, dim_y, dim_z, dim_t, j, h);
+             
+             /*Metropolis Accept/Reject*/
+             if(exp(-bt*S_n) / exp(-bt*S_o) > genrand64_real1())
+               {
+	         phi[j] = temp; //writes the new field point to phi array
+<<<<<<< Updated upstream
+                 S[j] = S_n; //Writes Energy to S array
+=======
+                 S[j] = Sn; //Writes Energy to S array
+>>>>>>> Stashed changes
+                 acc++; //counts the number of accepted values
+               }
+	     else
+	       { 
+	         S[j]=S_o;
+	       }
+>>>>>>> Stashed changes
              
 	  }   
            
