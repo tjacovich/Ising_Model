@@ -63,6 +63,7 @@ Ising_action.o\
 mt19937-64.o\
 printlattice.o\
 printtwopoint.o\
+action.o\
 # EXE: name of the executable file produced by compilation
 EXE=Ising_main
 
@@ -76,12 +77,14 @@ EXE=Ising_main
 # lines with \ .
 
 
-all: Ising_main.c deltaction mtgenerator printlattice printtwopoint
+all: Ising_main.c deltaction mtgenerator printlattice printtwopoint action
 	$(COMPILER) $(CFLAGS) $(EXTRFLAGS) $(INCLUDE) $(OBJECTS) $(EXE).c -lm -o $(EXE)
 
 deltaction: Ising_action.c 
 	$(COMPILER) $(CFLAGS) $(INCLUDE) Ising_action.c -c
 
+action: action.c 
+	$(COMPILER) $(CFLAGS) $(INCLUDE) action.c -c
 mtgenerator: mt19937-64.c 
 	$(COMPILER) $(CFLAGS) $(INCLUDE) mt19937-64.c -c
 
